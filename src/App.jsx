@@ -1,4 +1,4 @@
-import LogChecker from "./components/LogChecker";
+import LogChecker from "./components/NavBar";
 export default function App() {
   return (
     <div className="container">
