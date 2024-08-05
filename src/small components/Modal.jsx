@@ -1,25 +1,39 @@
 import { useState } from "react";
+import TextAreaWithCopy from "./TextAreaWithCopy";
 
 export default function Modal({ showModal, setShowModal, proxyDownProfiles }) {
   const [proxyInput, setProxyInput] = useState("");
+  const [pairedList, setPairedList] = useState([]);
 
   // Helper function to count lines
   const countLines = (text) => (text ? text.split("\n").length : 0);
 
   const handleProxySubmit = () => {
-    // Handle proxy input submission
-    console.log("Proxies:", proxyInput);
+    const profiles = proxyDownProfiles.join("\n").split("\n");
+    const proxies = proxyInput.split("\n");
+
+    if (profiles.length !== proxies.length) {
+      alert("You must provide the same number of proxies as profiles.");
+      return;
+    }
+
+    const newPairedList = profiles.map((profile, index) => `${profile};${proxies[index]}`);
+    console.log("Paired List:", newPairedList.join("\n"));
+
+    // Set the paired list to the state
+    setPairedList(newPairedList);
+
+    // Optionally, display the paired list or handle further processing here
     setShowModal(false); // Close the modal after submission
-    if ( countLines(proxyInput) - countLines(proxyDownProfiles.join("\n")) !=0 ){alert("u must give me the same number as the profiles")}
   };
 
   return (
     showModal && (
       <div className="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50">
-        <div className="bg-white p-6 rounded-lg shadow-lg w-1/2">
+        <div className="bg-white p-6 rounded-lg shadow-lg w-3/4">
           <h2 className="text-xl font-semibold mb-4">Enter Proxies</h2>
           <div className="flex gap-4 mb-4">
-            <div className="w-1/5">
+            <div className="w-1/2">
               <label className="block mb-2 text-gray-700 font-medium">
                 Proxy Down Profiles
               </label>
@@ -29,11 +43,12 @@ export default function Modal({ showModal, setShowModal, proxyDownProfiles }) {
                 value={proxyDownProfiles.join("\n")}
                 readOnly
               />
-              <span className="inline-flex items-center rounded-md bg-blue-50 px-2 text-xs font-medium text-blue-700 ring-1 ring-inset ring-blue-700/10">
-              Lines: {countLines(proxyDownProfiles.join("\n"))}
+              <span className="block mt-1 text-xs text-gray-600">
+                Lines: {countLines(proxyDownProfiles.join("\n"))}
               </span>
             </div>
-            <div className="w-4/5">
+
+            <div className="w-1/2">
               <label className="block mb-2 text-gray-700 font-medium">
                 Enter New Proxies
               </label>
@@ -43,11 +58,16 @@ export default function Modal({ showModal, setShowModal, proxyDownProfiles }) {
                 value={proxyInput}
                 onChange={(e) => setProxyInput(e.target.value)}
               />
-              <span className="inline-flex items-center rounded-md bg-blue-50 px-2 text-xs font-medium text-blue-700 ring-1 ring-inset ring-blue-700/10">
-              Lines: {countLines(proxyInput)}
+              <span className="block mt-1 text-xs text-gray-600">
+                Lines: {countLines(proxyInput)}
               </span>
             </div>
           </div>
+          <TextAreaWithCopy
+            id="pairedList"
+            label="Paired List"
+            value={pairedList.join("\n")}
+          />
           <div className="mt-4 flex justify-end gap-2">
             <button
               onClick={() => setShowModal(false)}
