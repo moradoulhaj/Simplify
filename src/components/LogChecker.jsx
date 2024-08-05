@@ -1,45 +1,22 @@
 import { useState } from "react";
 import Monitor from "../parts/Monitor";
+import { checkLogs } from "../scripts/checker";  // Adjust the import path based on your folder structure
 
 export default function LogChecker() {
   const [profiles, setProfiles] = useState("");
   const [logs, setLogs] = useState("");
-  const [proxyDown, setProxyDown] = useState("");
-  const [empty, setEmpty] = useState("");
-  const [others, setOthers] = useState("");
-  const [active, setActive] = useState("");
+  const [result, setResult] = useState({});
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (profiles.split("\n").length != logs.split("\n").length){alert("Profiles and Logs are not equal")}
 
-
-    // Split the logs into lines and process each line
-    const logLines = logs.split("\n");
-    let proxyDownLogs = [];
-    let emptyLogs = [];
-    let othersLogs = [];
-    let activeLogs = [];
-
-
-    logLines.forEach((line) => {
-      if (line.includes("proxy down")) {
-        proxyDownLogs.push(line);
-      } else if (line.trim() === "") {
-        emptyLogs.push(line);
-      } else if (line.includes("active")) {
-        activeLogs.push(line);
-      }
-      else {
-        othersLogs.push(line);
-      }
-    });
-
-    setProxyDown(proxyDownLogs.join("\n"));
-    setEmpty(emptyLogs.join("\n"));
-    setOthers(othersLogs.join("\n"));
-    setActive(activeLogs.join("\n"));
-
+    const result = checkLogs(profiles, logs);
+    
+    if (result.error) {
+      alert(result.error);
+    } else {
+      setResult(result);
+    }
   };
 
   return (
@@ -51,7 +28,7 @@ export default function LogChecker() {
               <label htmlFor="profiles">
                 Profiles:
                 <span className="inline-flex items-center rounded-md bg-blue-50 px-2 text-xs font-medium text-blue-700 ring-1 ring-inset ring-blue-700/10">
-                  {profiles.split("\n").length} 
+                  {profiles.split("\n").length}
                 </span>
               </label>
               <textarea
@@ -95,7 +72,7 @@ export default function LogChecker() {
         </form>
         <hr className="mt-2 border-indigo-600" />
       </div>
-      <Monitor active={active} profiles={profiles} proxyDown={proxyDown} empty={empty} others={others} />
+      <Monitor result={result} />
     </main>
   );
 }
