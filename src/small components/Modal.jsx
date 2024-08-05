@@ -10,7 +10,7 @@ export default function Modal({ showModal, setShowModal, proxyDownProfiles }) {
 
   const handleProxySubmit = () => {
     const profiles = proxyDownProfiles.join("\n").split("\n");
-    const proxies = proxyInput.split("\n");
+    const proxies = proxyInput.split("\n").map(proxy => proxy.replace(/:\d+$/, '')); // Remove port
 
     if (profiles.length !== proxies.length) {
       alert("You must provide the same number of proxies as profiles.");
