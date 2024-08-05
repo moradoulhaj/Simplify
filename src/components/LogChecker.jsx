@@ -5,7 +5,7 @@ import { checkLogs } from "../scripts/checker";  // Adjust the import path based
 export default function LogChecker() {
   const [profiles, setProfiles] = useState("");
   const [logs, setLogs] = useState("");
-  const [sent, setSent] = useState(false);
+  const [sent, setSent] = useState(true);
 
   const [result, setResult] = useState({});
 
