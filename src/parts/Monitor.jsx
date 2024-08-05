@@ -3,7 +3,7 @@ export default function Monitor({ result }) {
 
   return (
     <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
-      <div className="mt-2 flex w-full justify-center">
+      <div className=" flex w-full justify-center">
         <div className="w-1/4 p-4 border border-gray-300 bg-gray-50 rounded-lg shadow-lg">
           <label htmlFor="proxyDown" className="block mb-2 text-center text-gray-700 font-medium">
             Proxy Down
@@ -15,7 +15,7 @@ export default function Monitor({ result }) {
             id="proxyDown"
             name="proxyDown"
             rows={10}
-            style={{ height: "200px" }}
+            style={{ height: "160px" }}
             className="block w-full rounded-md border border-gray-400 py-1.5 text-gray-900 bg-gray-100 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
             value={result.proxyDownProfiles?.join("\n")}
             disabled
@@ -32,7 +32,7 @@ export default function Monitor({ result }) {
             id="empty"
             name="empty"
             rows={10}
-            style={{ height: "200px" }}
+            style={{ height: "160px" }}
             className="block w-full rounded-md border border-gray-400 py-1.5 text-gray-900 bg-gray-100 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
             value={result.notLogsProfiles?.join("\n")}
             disabled
@@ -49,7 +49,7 @@ export default function Monitor({ result }) {
             id="others"
             name="others"
             rows={10}
-            style={{ height: "200px" }}
+            style={{ height: "160px" }}
             className="block w-full rounded-md border border-gray-400 py-1.5 text-gray-900 bg-gray-100 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
             value={result.othersProfiles?.join("\n")}
             disabled
@@ -66,7 +66,7 @@ export default function Monitor({ result }) {
             id="active"
             name="active"
             rows={10}
-            style={{ height: "200px" }}
+            style={{ height: "160px" }}
             className="block w-full rounded-md border border-gray-400 py-1.5 text-gray-900 bg-gray-100 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
             value={result.connectedProfiles?.join("\n")}
             disabled
