@@ -13,11 +13,12 @@ export default function LogChecker() {
     e.preventDefault();
 
     const result = checkLogs(profiles, logs);
-    setSent(true)
     if (result.error) {
       alert(result.error);
     } else {
       setResult(result);
+      setSent(true);
+
     }
   };
 
