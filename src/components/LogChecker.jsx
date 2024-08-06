@@ -24,10 +24,10 @@ export default function LogChecker() {
 
   return (
     <main>
-      <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
+      <div className="px-5 mt-2">
         <form onSubmit={handleSubmit}>
-          <div className="mt-2 flex w-full">
-            <div className="w-1/2">
+          <div className="flex justify-center">
+            <div className="w-1/5">
               <label htmlFor="profiles">
                 Profiles:
                 <span className="inline-flex items-center rounded-md bg-blue-50 px-2 text-xs font-medium text-blue-700 ring-1 ring-inset ring-blue-700/10">
@@ -38,14 +38,14 @@ export default function LogChecker() {
                 id="profiles"
                 name="profiles"
                 rows={3}
-                style={{ height: "150px" }}
-                className="block w-full rounded-md border-0  p-2 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                style={{ height: "150px",resize: "none" }}
+                className="w-full rounded-md border-0  p-2 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 value={profiles}
                 onChange={(e) => setProfiles(e.target.value)}
                 required
               />
             </div>
-            <div className="w-1/2">
+           <div className="w-1/2"> 
               <label htmlFor="logs">
                 Logs:
                 <span className="inline-flex items-center rounded-md bg-blue-50 px-2 text-xs font-medium text-blue-700 ring-1 ring-inset ring-blue-700/10">
@@ -56,7 +56,7 @@ export default function LogChecker() {
                 id="logs"
                 name="logs"
                 rows={3}
-                style={{ height: "150px" }}
+                style={{ height: "150px",resize: "none", }}
                 className="block w-full p-2 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 value={logs}
                 onChange={(e) => setLogs(e.target.value)}

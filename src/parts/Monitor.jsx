@@ -2,8 +2,8 @@ import TextAreaWithCopy from "../small components/TextAreaWithCopy";
 
 export default function Monitor({ result }) {
   return (
-    <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
-      <div className=" w-full flex-wrap justify-center">
+    <div className="p-10 ">
+      <div className=" grid gap-4 grid-cols-5 ">
         {result.connectedProfiles?.length > 0 && (
           <TextAreaWithCopy
             id="active"
