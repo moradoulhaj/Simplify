@@ -1,16 +1,14 @@
 import { useState } from "react";
 import TextAreaWithCopy from "./TextAreaWithCopy";
+import TextAreaInput from "./TextAreaInput";  // Adjust the import path based on your folder structure
 
 export default function Modal({ showModal, setShowModal, proxyDownProfiles }) {
   const [proxyInput, setProxyInput] = useState("");
   const [pairedList, setPairedList] = useState([]);
 
-  // Helper function to count lines
-  const countLines = (text) => (text ? text.split("\n").length : 0);
-
   const handleProxySubmit = () => {
     const profiles = proxyDownProfiles.join("\n").split("\n");
-    const proxies = proxyInput.split("\n").map(proxy => proxy.replace(/:\d+$/, '')); // Remove port
+    const proxies = proxyInput.split("\n").map((proxy) => proxy.replace(/:\d+$/, "")); // Remove port
 
     if (profiles.length !== proxies.length) {
       alert("You must provide the same number of proxies as profiles.");
@@ -24,7 +22,7 @@ export default function Modal({ showModal, setShowModal, proxyDownProfiles }) {
     setPairedList(newPairedList);
 
     // Optionally, display the paired list or handle further processing here
-    setShowModal(false); // Close the modal after submission
+     // Close the modal after submission
   };
 
   return (
@@ -34,33 +32,21 @@ export default function Modal({ showModal, setShowModal, proxyDownProfiles }) {
           <h2 className="text-xl font-semibold mb-4">Enter Proxies</h2>
           <div className="flex gap-4 mb-4">
             <div className="w-1/2">
-              <label className="block mb-2 text-gray-700 font-medium">
-                Proxy Down Profiles
-              </label>
-              <textarea
-                className="w-full p-2 border rounded"
-                rows={10}
+              <TextAreaInput
+                id="proxyDownProfiles"
+                label="Proxy Down Profiles"
                 value={proxyDownProfiles.join("\n")}
-                readOnly
+                onChange={() => {}}
+                readOnly={true}
               />
-              <span className="block mt-1 text-xs text-gray-600">
-                Lines: {countLines(proxyDownProfiles.join("\n"))}
-              </span>
             </div>
-
             <div className="w-1/2">
-              <label className="block mb-2 text-gray-700 font-medium">
-                Enter New Proxies
-              </label>
-              <textarea
-                className="w-full p-2 border rounded"
-                rows={10}
+              <TextAreaInput
+                id="proxyInput"
+                label="Enter New Proxies"
                 value={proxyInput}
                 onChange={(e) => setProxyInput(e.target.value)}
               />
-              <span className="block mt-1 text-xs text-gray-600">
-                Lines: {countLines(proxyInput)}
-              </span>
             </div>
           </div>
           <TextAreaWithCopy
@@ -73,13 +59,13 @@ export default function Modal({ showModal, setShowModal, proxyDownProfiles }) {
               onClick={() => setShowModal(false)}
               className="bg-gray-500 text-white px-4 py-2 rounded"
             >
-              Cancel
+              <i class="ri-close-large-line"></i>
             </button>
             <button
               onClick={handleProxySubmit}
               className="bg-blue-600 text-white px-4 py-2 rounded"
             >
-              Submit
+              <i class="ri-swap-2-fill"></i>
             </button>
           </div>
         </div>

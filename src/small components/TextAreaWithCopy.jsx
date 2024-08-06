@@ -28,7 +28,7 @@ export default function TextAreaWithCopy({ id, label, value, proxyDownProfiles }
           id={id}
           name={id}
           rows={10}
-          style={{ height: "160px", resize: "none", }}
+          style={{ height: "140px", resize: "none", }}
           className="block w-full rounded-md border border-gray-400 py-1.5 text-gray-900 bg-gray-100 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
           value={value}
           ref={textAreaRef}
