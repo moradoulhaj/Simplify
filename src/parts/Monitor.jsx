@@ -3,30 +3,79 @@ import TextAreaWithCopy from "../small components/TextAreaWithCopy";
 export default function Monitor({ result }) {
   return (
     <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
-      <div className="flex w-full justify-center">
-        <TextAreaWithCopy
-          id="proxyDown"
-          label="Proxy Down"
-          value={result.proxyDownProfiles?.join("\n")}
-          proxyDownProfiles={result.proxyDownProfiles}
-        />
-        <TextAreaWithCopy
-          id="empty"
-          label="Empty"
-          value={result.notLogsProfiles?.join("\n")}
-        />
-        <TextAreaWithCopy
-          id="others"
-          label="Others"
-          value={result.othersProfiles?.join("\n")}
-        />
-        <TextAreaWithCopy
-          id="active"
-          label="Active"
-          value={result.connectedProfiles?.join("\n")}
-        />
+      <div className=" w-full flex-wrap justify-center">
+        {result.connectedProfiles?.length > 0 && (
+          <TextAreaWithCopy
+            id="active"
+            label="Active"
+            value={result.connectedProfiles.join("\n")}
+          />
+        )}
+        {result.proxyDownProfiles?.length > 0 && (
+          <TextAreaWithCopy
+            id="proxyDown"
+            label="Proxy Down"
+            value={result.proxyDownProfiles.join("\n")}
+            proxyDownProfiles={result.proxyDownProfiles}
+          />
+        )}
+        {result.maxExecutionTimeProfiles?.length > 0 && (
+          <TextAreaWithCopy
+            id="maxExecutionTime"
+            label="Max Execution Time"
+            value={result.maxExecutionTimeProfiles.join("\n")}
+          />
+        )}
+        {result.accountRestrictedProfiles?.length > 0 && (
+          <TextAreaWithCopy
+            id="accountRestricted"
+            label="Account Restricted"
+            value={result.accountRestrictedProfiles.join("\n")}
+          />
+        )}
+        {result.captchaVerificationProfiles?.length > 0 && (
+          <TextAreaWithCopy
+            id="captchaVerification"
+            label="Captcha Verification"
+            value={result.captchaVerificationProfiles.join("\n")}
+          />
+        )}
+        {result.wrongPasswordProfiles?.length > 0 && (
+          <TextAreaWithCopy
+            id="wrongPassword"
+            label="Wrong Password"
+            value={result.wrongPasswordProfiles.join("\n")}
+          />
+        )}
+        {result.phoneNumberProfiles?.length > 0 && (
+          <TextAreaWithCopy
+            id="phoneNumber"
+            label="Phone Number"
+            value={result.phoneNumberProfiles.join("\n")}
+          />
+        )}
+        {result.unusualActivityProfiles?.length > 0 && (
+          <TextAreaWithCopy
+            id="usualActivity"
+            label="Usual Activity"
+            value={result.unusualActivityProfiles.join("\n")}
+          />
+        )}
+        {result.accountDisabledProfiles?.length > 0 && (
+          <TextAreaWithCopy
+            id="accountDisabled"
+            label="Account Disabled"
+            value={result.accountDisabledProfiles.join("\n")}
+          />
+        )}
+        {result.othersProfiles?.length > 0 && (
+          <TextAreaWithCopy
+            id="others"
+            label="Others"
+            value={result.othersProfiles.join("\n")}
+          />
+        )}
       </div>
-      {/* Add more TextAreaWithCopy components for other categories if needed */}
     </div>
   );
 }
