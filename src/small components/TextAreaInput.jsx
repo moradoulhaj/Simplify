@@ -7,8 +7,8 @@ const TextAreaInput = ({ id, label, value, onChange }) => {
     <div className="w-full">
       <label htmlFor={id} className="block mb-2 text-gray-700 font-medium">
         {label}:
-        <span className="inline-flex items-center rounded-md bg-blue-50 px-2 text-xs font-medium text-blue-700 ring-1 ring-inset ring-blue-700/10 ml-2">
-          {countLines(value)}
+        <span className="inline-flex items-center rounded-md bg-blue-50 px-2 ml-2 text-xs font-medium text-blue-700 ring-1 ring-inset ring-blue-700/10">
+          Lines :{countLines(value)}
         </span>
       </label>
       <textarea
