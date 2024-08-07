@@ -11,6 +11,15 @@ export default function TextAreaWithCopy({ id, label, value, proxyDownProfiles }
     textAreaRef.current.select();
     document.execCommand("copy");
   };
+  const getIcon = (id) => {
+    if (id === "pairedList") {
+      return <i className="ri-check-double-line"></i>;
+    } else if (id === "proxyDown") {
+      return <i className="ri-pencil-fill"></i>;
+    } else {
+      return <i className="ri-download-fill"></i>;
+    }
+  };
 
   return (
     <>
@@ -47,12 +56,12 @@ export default function TextAreaWithCopy({ id, label, value, proxyDownProfiles }
             <button
               onClick={() => setShowModal(true)}
               className="mt-2 bg-blue-600 text-white px-5 py-1 rounded"
-            >
-              {id === "proxyDown" ? (
+            > {getIcon(id)}
+              {/* {id === "proxyDown" ? (
                 <i className="ri-pencil-fill"></i>
               ) : (
                 <i className="ri-download-fill"></i>
-              )}
+              )} */}
             </button>
           </div>
         </div>

@@ -2,7 +2,7 @@ import TextAreaWithCopy from "../small components/TextAreaWithCopy";
 
 export default function Monitor({ result }) {
   return (
-    <div className="p-10 ">
+    <div className="p-10 flex flex-col justify-center items-center">
       <div className=" grid gap-4 grid-cols-5 ">
         {result.connectedProfiles?.length > 0 && (
           <TextAreaWithCopy
@@ -66,6 +66,13 @@ export default function Monitor({ result }) {
             id="accountDisabled"
             label="Account Disabled"
             value={result.accountDisabledProfiles.join("\n")}
+          />
+        )}
+        {result.notLogsProfiles?.length > 0 && (
+          <TextAreaWithCopy
+            id="empty"
+            label="Empty"
+            value={result.notLogsProfiles.join("\n")}
           />
         )}
         {result.othersProfiles?.length > 0 && (
