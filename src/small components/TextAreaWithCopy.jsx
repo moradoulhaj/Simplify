@@ -1,9 +1,12 @@
 import { useRef, useState } from "react";
 import Modal from "./Modal";
+import NewLogsModal from "./NewLogsModal";
 
 export default function TextAreaWithCopy({ id, label, value, proxyDownProfiles }) {
   const textAreaRef = useRef(null);
   const [showModal, setShowModal] = useState(false);
+  const [showNewLogsModal, setShowNewLogsModal] = useState(false);
+
 
   const countLines = (text) => (text ? text.split("\n").length : 0);
 
@@ -54,7 +57,7 @@ export default function TextAreaWithCopy({ id, label, value, proxyDownProfiles }
           </div>
           <div>
             <button
-              onClick={() => setShowModal(true)}
+              onClick={() => (id === "pairedList" ? setShowNewLogsModal(true) : setShowModal(true))}
               className="mt-2 bg-blue-600 text-white px-5 py-1 rounded"
             > {getIcon(id)}
               {/* {id === "proxyDown" ? (
@@ -71,6 +74,11 @@ export default function TextAreaWithCopy({ id, label, value, proxyDownProfiles }
         setShowModal={setShowModal}
         proxyDownProfiles={proxyDownProfiles}
       />
+      <NewLogsModal
+      showNewLogsModal={showNewLogsModal}
+      setShowNewLogsModal={setShowNewLogsModal}
+    />
+      
     </>
   );
 }

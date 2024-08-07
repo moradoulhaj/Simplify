@@ -54,7 +54,7 @@ export default function LogChecker() {
         </form>
         <hr className="mt-2 border-indigo-600" />
       </div>
-      {sent && <Monitor result={result} />}
+      {sent && <Monitor  result={result} />}
     </main>
   );
 }
