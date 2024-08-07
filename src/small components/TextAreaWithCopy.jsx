@@ -11,10 +11,19 @@ export default function TextAreaWithCopy({ id, label, value, proxyDownProfiles }
     textAreaRef.current.select();
     document.execCommand("copy");
   };
+  const getIcon = (id) => {
+    if (id === "pairedList") {
+      return <i className="ri-check-double-line"></i>;
+    } else if (id === "proxyDown") {
+      return <i className="ri-pencil-fill"></i>;
+    } else {
+      return <i className="ri-download-fill"></i>;
+    }
+  };
 
   return (
     <>
-      <div className="w-full p-4 border border-gray-300 bg-gray-50 rounded-lg shadow-lg ml-4">
+      <div className="w-full border p-3 border-gray-300 bg-gray-50 rounded-lg shadow-lg">
         <label
           htmlFor={id}
           className="block mb-2 text-center text-gray-700 font-medium"
@@ -28,7 +37,7 @@ export default function TextAreaWithCopy({ id, label, value, proxyDownProfiles }
           id={id}
           name={id}
           rows={10}
-          style={{ height: "160px" }}
+          style={{ height: "140px", resize: "none", }}
           className="block w-full rounded-md border border-gray-400 py-1.5 text-gray-900 bg-gray-100 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
           value={value}
           ref={textAreaRef}
@@ -47,12 +56,12 @@ export default function TextAreaWithCopy({ id, label, value, proxyDownProfiles }
             <button
               onClick={() => setShowModal(true)}
               className="mt-2 bg-blue-600 text-white px-5 py-1 rounded"
-            >
-              {id === "proxyDown" ? (
+            > {getIcon(id)}
+              {/* {id === "proxyDown" ? (
                 <i className="ri-pencil-fill"></i>
               ) : (
                 <i className="ri-download-fill"></i>
-              )}
+              )} */}
             </button>
           </div>
         </div>
